@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛸 任務代號：TSL-1215 探險日誌</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS 樣式開始 */
+        :root {
+            /* 主題色：清爽探險藍與暖橘色 */
+            --main-blue: #7DD0F0; /* 淺藍色 */
+            --accent-orange: #FF7F50; /* 暖橘色 (活力) */
+            --text-dark: #2C3E50;
+            --background-light: #F4FBFD; /* 極淺藍背景 */
+            --matcha-green: #A8E6CF; /* 輔助色：抹茶綠 */
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* 頂部標題：不放名字，只放代號 */
+        .header {
+            background-color: var(--main-blue);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.2em;
+            margin: 0 0 5px 0;
+            text-shadow: 2px 2px var(--accent-orange);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        /* 裝飾圖標 */
+        .header i {
+            font-size: 2em;
+            margin: 0 10px;
+            color: var(--accent-orange);
+        }
+
+        /* 內容網格 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 兩欄佈局 */
+            gap: 30px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+            border-left: 5px solid var(--accent-orange);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--main-blue);
+            border-bottom: 2px dashed var(--matcha-green);
+            padding-bottom: 8px;
+            margin-top: 0;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5em;
+        }
+        
+        .card h3 i {
+            margin-right: 8px;
+            color: var(--accent-orange);
+        }
+
+        /* 徽章樣式 */
+        .badge {
+            display: inline-block;
+            background-color: var(--matcha-green);
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: background-color 0.2s;
+        }
+        
+        .badge.active {
+            background-color: var(--accent-orange);
+            color: white;
+        }
+
+        /* 資訊卡片中的特殊文字 */
+        .info-detail {
+            font-weight: bold;
+            color: var(--accent-orange);
+        }
+        
+        /* Instagram 卡片 */
+        .ig-card {
+            grid-column: 1 / -1; /* 佔滿整行 */
+            text-align: center;
+            border-left: 5px solid var(--matcha-green);
+        }
+
+        .ig-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: var(--main-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .ig-link:hover {
+            background-color: var(--accent-orange);
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2.5em;
+            }
+        }
+        /* CSS 樣式結束 */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="header">
+            <i class="fas fa-cat"></i>
+            <i class="fas fa-basketball-ball"></i>
+            <h1>外星貓咪探險隊：任務啟動！</h1>
+            <p>🛸 代號：TSL-1215 | 身份：東華資管 | 狀態：準備挑戰新事物</p>
+        </header>
+
+        <div class="content-grid">
+            
+            <main>
+                <div class="card">
+                    <h3><i class="fas fa-user-tag"></i> 隊員檔案</h3>
+                    <p><strong>隊員姓名：</strong> <span class="info-detail">曾筱凌</span> (請勿公開宣傳)</p>
+                    <p><strong>年齡：</strong> 18 歲</p>
+                    <p><strong>基地：</strong> 新北市</p>
+                    <p><strong>專長領域：</strong> 資訊管理、運動競賽</p>
+                    <p><strong>隊員特質：</strong> <span class="info-detail">射手座 ♐️</span> | 嘴毒，但行動力強，熱衷結交<span class="info-detail">交心</span>的盟友。</p>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-star"></i> 探險技能與偏好</h3>
+                    <p>探險活動可以動態也可以靜態，最重要是好玩！</p>
+                    <div style="margin-top: 15px;">
+                        <span class="badge active"><i class="fas fa-basketball-ball"></i> 籃球</span>
+                        <span class="badge active"><i class="fas fa-table-tennis"></i> 羽毛球</span>
+                        <span class="badge active"><i class="fas fa-gamepad"></i> 玩遊戲</span>
+                        <span class="badge"><i class="fas fa-desktop"></i> 追劇</span>
+                        <span class="badge"><i class="fas fa-music"></i> 聽音樂</span>
+                        <span class="badge"><i class="fas fa-hiking"></i> 挑戰新事物</span>
+                        <span class="badge"><i class="fas fa-surprise"></i> 恐怖片愛好者</span>
+                    </div>
+                </div>
+            </main>
+
+            <aside>
+                <div class="card" style="min-height: 250px;">
+                    <h3><i class="fas fa-cookie-bite"></i> 秘密補給站</h3>
+                    <p>這是我的能量來源，探險路上不能少！</p>
+                    <ul>
+                        <li><span style="color: var(--matcha-green); font-weight: bold;">🍵 抹茶甜點：</span> 必須是我的頭號補給品！</li>
+                        <li>🍰 其他甜點：只要是甜的都歡迎。</li>
+                        <li>👽 外星人：我的精神啟蒙，永遠相信未知。</li>
+                        <li>🐱 貓咪：我的心靈導航系統，有貓萬事足。</li>
+                        <li>😄 特殊愛好：喜歡看**別人**被恐怖片嚇到的樣子！</li>
+                    </ul>
+                </div>
+            </aside>
+            
+            <div class="card ig-card">
+                <h3><i class="fab fa-instagram"></i> 探險隊 IG 頻道</h3>
+                <p style="font-family: 'Fredoka', sans-serif; font-size: 1.2em;">追蹤頻道 ID: **tsl._.1215**</p>
+                <div class="instagram-embed">
+                    </div>
+                <a class="ig-link" href="https://www.instagram.com/tsl._.1215/" target="_blank">
+                    前往 TSL-1215 的外星貓咪探險日誌
+                </a>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <footer style="text-align: center; padding: 30px; margin-top: 40px; color: var(--text-dark); border-top: 1px dashed var(--main-blue);">
+        <p>© 2025 TSL-1215 外星貓咪探險隊日誌。準備迎接挑戰！</p>
+    </footer>
+
+</body>
+</html>
