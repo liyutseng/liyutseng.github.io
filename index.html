@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS 樣式開始 */
         :root {
-            /* 主題色：清爽探險藍與暖橘色 */
-            --main-blue: #7DD0F0; /* 淺藍色 */
-            --accent-orange: #FF7F50; /* 暖橘色 (活力) */
+            --main-blue: #7DD0F0;
+            --accent-orange: #FF7F50;
             --text-dark: #2C3E50;
-            --background-light: #F4FBFD; /* 極淺藍背景 */
-            --matcha-green: #A8E6CF; /* 輔助色：抹茶綠 */
+            --background-light: #F4FBFD;
+            --matcha-green: #A8E6CF;
             --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
@@ -33,7 +31,6 @@
             padding: 20px;
         }
 
-        /* 頂部標題：不放名字，只放代號 */
         .header {
             background-color: var(--main-blue);
             color: white;
@@ -42,7 +39,6 @@
             border-radius: 20px;
             box-shadow: var(--box-shadow);
             margin-bottom: 40px;
-            position: relative;
         }
 
         .header h1 {
@@ -56,18 +52,16 @@
             font-size: 1.1em;
             opacity: 0.9;
         }
-        
-        /* 裝飾圖標 */
+
         .header i {
             font-size: 2em;
             margin: 0 10px;
             color: var(--accent-orange);
         }
 
-        /* 內容網格 */
         .content-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* 兩欄佈局 */
+            grid-template-columns: 2fr 1fr;
             gap: 30px;
         }
 
@@ -92,13 +86,12 @@
             font-family: 'Fredoka', sans-serif;
             font-size: 1.5em;
         }
-        
+
         .card h3 i {
             margin-right: 8px;
             color: var(--accent-orange);
         }
 
-        /* 徽章樣式 */
         .badge {
             display: inline-block;
             background-color: var(--matcha-green);
@@ -111,21 +104,19 @@
             margin-bottom: 8px;
             transition: background-color 0.2s;
         }
-        
+
         .badge.active {
             background-color: var(--accent-orange);
             color: white;
         }
 
-        /* 資訊卡片中的特殊文字 */
         .info-detail {
             font-weight: bold;
             color: var(--accent-orange);
         }
-        
-        /* Instagram 卡片 */
+
         .ig-card {
-            grid-column: 1 / -1; /* 佔滿整行 */
+            grid-column: 1 / -1;
             text-align: center;
             border-left: 5px solid var(--matcha-green);
         }
@@ -145,7 +136,7 @@
         .ig-link:hover {
             background-color: var(--accent-orange);
         }
-        
+
         @media (max-width: 768px) {
             .content-grid {
                 grid-template-columns: 1fr;
@@ -154,43 +145,66 @@
                 font-size: 2.5em;
             }
         }
-        /* CSS 樣式結束 */
     </style>
 </head>
 <body>
 
     <div class="container">
-        
+
         <header class="header">
             <i class="fas fa-cat"></i>
             <i class="fas fa-basketball-ball"></i>
             <h1>外星貓咪探險隊：任務啟動！</h1>
-            <p>🛸 代號：TSL-1215 | 身份：東華資管 | 狀態：準備挑戰新事物</p>
+            <p>🛸 代號：TSL-1215 | 身份：東華資管 | 狀態：準備大步向前！</p>
         </header>
 
         <div class="content-grid">
-            
+
             <main>
                 <div class="card">
                     <h3><i class="fas fa-user-tag"></i> 隊員檔案</h3>
-                    <p><strong>隊員姓名：</strong> <span class="info-detail">曾筱凌</span> (請勿公開宣傳)</p>
+                    <p><strong>隊員姓名：</strong> <span class="info-detail">曾筱凌</span> </p>
                     <p><strong>年齡：</strong> 18 歲</p>
                     <p><strong>基地：</strong> 新北市</p>
                     <p><strong>專長領域：</strong> 資訊管理、運動競賽</p>
-                    <p><strong>隊員特質：</strong> <span class="info-detail">射手座 ♐️</span> | 嘴毒，但行動力強，熱衷結交<span class="info-detail">交心</span>的盟友。</p>
+
+                    <p><strong>隊員特質：</strong><br>
+                        <span class="info-detail">射手座 ♐️</span> | 嘴毒但反應超快 ( •̀ ω •́ )✧<br>
+                        個性直接、喜歡簡單，不愛彎彎繞繞！<br>
+                        超會丟餿主意給別人做（但通常能成功？也不一定🤭）<br>
+                        喜歡交<span class="info-detail">交心</span>的朋友。<br>
+                        愛的演員：<span class="info-detail">迪麗熱巴 ❤️</span>
+                    </p>
                 </div>
 
                 <div class="card">
                     <h3><i class="fas fa-star"></i> 探險技能與偏好</h3>
-                    <p>探險活動可以動態也可以靜態，最重要是好玩！</p>
+                    <p>喜歡的是「好玩」「簡單」「直接」的探險！٩(๑❛ᴗ❛๑)۶</p>
+
                     <div style="margin-top: 15px;">
+                        <!-- 運動 -->
                         <span class="badge active"><i class="fas fa-basketball-ball"></i> 籃球</span>
                         <span class="badge active"><i class="fas fa-table-tennis"></i> 羽毛球</span>
+
+                        <!-- 娛樂 -->
                         <span class="badge active"><i class="fas fa-gamepad"></i> 玩遊戲</span>
                         <span class="badge"><i class="fas fa-desktop"></i> 追劇</span>
                         <span class="badge"><i class="fas fa-music"></i> 聽音樂</span>
-                        <span class="badge"><i class="fas fa-hiking"></i> 挑戰新事物</span>
-                        <span class="badge"><i class="fas fa-surprise"></i> 恐怖片愛好者</span>
+
+                        <!-- 新增喜好 -->
+                        <span class="badge active"><i class="fas fa-book"></i> 看小說</span>
+                        <span class="badge active"><i class="fas fa-plane"></i> 旅行</span>
+                        <span class="badge active"><i class="fas fa-ice-cream"></i> 吃冰</span>
+                        <span class="badge active"><i class="fas fa-cookie"></i> 吃甜點</span>
+
+                        <!-- 個性 -->
+                        <span class="badge"><i class="fas fa-bolt"></i> 直接派</span>
+                        <span class="badge"><i class="fas fa-lightbulb"></i> 出餿主意高手(?!)</span>
+
+                        <!-- 愛豆 -->
+                        <span class="badge active"><i class="fas fa-heart"></i> 迪麗熱巴</span>
+
+                        <span class="badge"><i class="fas fa-ghost"></i> 恐怖片愛好者</span>
                     </div>
                 </div>
             </main>
@@ -198,33 +212,37 @@
             <aside>
                 <div class="card" style="min-height: 250px;">
                     <h3><i class="fas fa-cookie-bite"></i> 秘密補給站</h3>
-                    <p>這是我的能量來源，探險路上不能少！</p>
+                    <p>每個探險隊員都需要補給！｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡</p>
                     <ul>
-                        <li><span style="color: var(--matcha-green); font-weight: bold;">🍵 抹茶甜點：</span> 必須是我的頭號補給品！</li>
-                        <li>🍰 其他甜點：只要是甜的都歡迎。</li>
-                        <li>👽 外星人：我的精神啟蒙，永遠相信未知。</li>
-                        <li>🐱 貓咪：我的心靈導航系統，有貓萬事足。</li>
-                        <li>😄 特殊愛好：喜歡看**別人**被恐怖片嚇到的樣子！</li>
+                        <li><span style="color: var(--matcha-green); font-weight: bold;">🍵 抹茶甜點：</span> 第一順位！永恆能量源。</li>
+                        <li>🍨 吃冰：一年四季都可以吃 (ฅ'ω'ฅ)♪</li>
+                        <li>🍰 甜點全收：甜就是力量！</li>
+                        <li>📚 看小說：腦內冒險加速器。</li>
+                        <li>✈️ 旅行：人生地圖越畫越大。</li>
+                        <li>🔥 個性補給：簡單就好、不喜歡繞圈圈。<br>但超會給別人餿主意，樂在其中 (ﾉ≧ڡ≦)</li>
+                        <li>👽 外星人：精神啟蒙，保持神秘感。</li>
+                        <li>🐱 貓咪：心靈導航，有貓萬事足♡</li>
+                        <li>😄 趣味：愛看別人被恐怖片嚇到。</li>
                     </ul>
                 </div>
             </aside>
-            
+
             <div class="card ig-card">
                 <h3><i class="fab fa-instagram"></i> 探險隊 IG 頻道</h3>
-                <p style="font-family: 'Fredoka', sans-serif; font-size: 1.2em;">追蹤頻道 ID: **tsl._.1215**</p>
-                <div class="instagram-embed">
-                    </div>
+                <p style="font-family: 'Fredoka', sans-serif; font-size: 1.2em;">
+                    追蹤頻道：<strong>tsl._.1215</strong> (ฅ>ω<*ฅ)♡
+                </p>
                 <a class="ig-link" href="https://www.instagram.com/tsl._.1215/" target="_blank">
-                    前往 TSL-1215 的外星貓咪探險日誌
+                    前往 TSL-1215 的外星貓咪探險日誌 🚀
                 </a>
             </div>
 
         </div>
-        
+
     </div>
 
     <footer style="text-align: center; padding: 30px; margin-top: 40px; color: var(--text-dark); border-top: 1px dashed var(--main-blue);">
-        <p>© 2025 TSL-1215 外星貓咪探險隊日誌。準備迎接挑戰！</p>
+        <p>© 2025 TSL-1215 外星貓咪探險隊日誌。準備迎接下一個挑戰！☆</p>
     </footer>
 
 </body>
