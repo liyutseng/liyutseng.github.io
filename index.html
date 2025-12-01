@@ -1,459 +1,194 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛸 任務代號：TSL-1215 探險日誌</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* ---------------------------------------------------- */
-        /*                    主題色／變數                        */
-        /* ---------------------------------------------------- */
-        :root {
-            --main-blue: #7DD0F0;
-            --accent-orange: #FF7F50;
-            --text-dark: #2C3E50;
-            --background-light: #F4FBFD;
-            --matcha-green: #A8E6CF;
-            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-
-            /* 夜間模式 */
-            --bg-dark: #1b1b1b;
-            --text-light: #f4f4f4;
-            --card-dark: #2c2c2c;
-            --accent-purple: #b983ff;
-        }
-
-        /* ---------------------------------------------------- */
-        /*                      夜間模式                          */
-        /* ---------------------------------------------------- */
-        body.dark {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        body.dark .card {
-            background-color: var(--card-dark);
-            border-left-color: var(--accent-purple);
-        }
-
-        body.dark .ig-link {
-            background-color: var(--accent-purple);
-        }
-
-        /* ---------------------------------------------------- */
-        /*                       基礎樣式                        */
-        /* ---------------------------------------------------- */
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            line-height: 1.7;
-            transition: background-color .4s, color .4s;
-        }
-
-        .container {
-            max-width: 1050px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .header {
-            background-color: var(--main-blue);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 20px;
-            box-shadow: var(--box-shadow);
-            margin-bottom: 40px;
-        }
-
-        .header h1 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 3.2em;
-            margin: 0 0 5px 0;
-            text-shadow: 2px 2px var(--accent-orange);
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.95;
-        }
-
-        .header i {
-            font-size: 2em;
-            margin: 0 8px;
-            color: var(--accent-orange);
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-        }
-
-        .card {
-            background-color: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: var(--box-shadow);
-            border-left: 5px solid var(--accent-orange);
-            transition: transform .3s ease, background-color .4s, color .4s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: var(--main-blue);
-            border-bottom: 2px dashed var(--matcha-green);
-            padding-bottom: 8px;
-            margin-top: 0;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.5em;
-        }
-
-        .card h3 i {
-            margin-right: 8px;
-            color: var(--accent-orange);
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: var(--matcha-green);
-            color: var(--text-dark);
-            padding: 6px 12px;
-            border-radius: 20px;
-            margin: 6px 6px 6px 0;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-
-        .badge.active {
-            background-color: var(--accent-orange);
-            color: white;
-        }
-
-        .info-detail {
-            font-weight: bold;
-            color: var(--accent-orange);
-        }
-
-        .ig-card {
-            grid-column: 1 / -1;
-            text-align: center;
-            border-left-color: var(--matcha-green);
-        }
-
-        .ig-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: var(--main-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: .3s;
-        }
-
-        .ig-link:hover {
-            background-color: var(--accent-orange);
-        }
-
-        /* ---------------------------------------------------- */
-        /*               貓貓指數＋吐槽機＋奇怪名言               */
-        /* ---------------------------------------------------- */
-
-        #cat-index, #roast-box {
-            margin: 10px 0 25px 0;
-            padding: 12px 20px;
-            border-radius: 15px;
-            font-weight: bold;
-            box-shadow: var(--box-shadow);
-        }
-
-        #cat-index {
-            background-color: var(--matcha-green);
-        }
-
-        #roast-box {
-            background-color: var(--accent-orange);
-            color: white;
-        }
-
-        #weird-quote {
-            text-align: center;
-            margin-top: 40px;
-            opacity: 0;
-            transition: opacity 1s;
-        }
-
-        /* ---------------------------------------------------- */
-        /*         🌙 可愛貓咪提醒泡泡＋動畫＋黑化台詞            */
-        /* ---------------------------------------------------- */
-
-        #dark-hint {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 12px 18px 12px 55px;
-            border-radius: 20px;
-            box-shadow: var(--box-shadow);
-            font-weight: bold;
-            font-size: 0.9em;
-            border-left: 4px solid var(--accent-orange);
-            cursor: pointer;
-            z-index: 1000;
-            transition: transform .3s, opacity .8s, bottom .8s ease-in-out;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: wiggle 1.4s infinite ease-in-out;
-        }
-
-        #dark-hint:hover {
-            transform: scale(1.06);
-        }
-
-        #cat-icon {
-            width: 36px;
-            height: 36px;
-            position: absolute;
-            left: 10px;
-            bottom: 8px;
-        }
-
-        @keyframes wiggle {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            50% { transform: translateX(2px); }
-            75% { transform: translateX(-1px); }
-            100% { transform: translateX(0); }
-        }
-
-        @keyframes cat-grab {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            40% { transform: translateY(-20px) rotate(-6deg); }
-            70% { transform: translateY(60px) rotate(10deg); opacity: .7; }
-            100% { transform: translateY(200px) rotate(25deg); opacity: 0; }
-        }
-
-        body.dark #dark-hint {
-            background: rgba(40, 40, 40, 0.95);
-            color: var(--text-light);
-            border-left-color: var(--accent-purple);
-        }
-
-        #dark-quote {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(30, 30, 30, 0.9);
-            padding: 12px 20px;
-            border-radius: 12px;
-            color: var(--text-light);
-            font-weight: bold;
-            font-size: 1em;
-            opacity: 0;
-            transition: opacity .6s;
-            z-index: 999;
-            pointer-events: none;
-        }
-
-        body.dark #dark-quote {
-            opacity: 1;
-        }
-
-        /* ---------------------------------------------------- */
-        /*                       RWD                            */
-        /* ---------------------------------------------------- */
-        @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 2.5em;
-            }
-        }
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛸 任務代號：TSL-1215 探險日誌</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ------------------ 主題色 / 變數 ------------------ */
+:root{
+--main-blue:#7DD0F0;
+--accent-orange:#FF7F50;
+--text-dark:#2C3E50;
+--background-light:#F4FBFD;
+--matcha-green:#A8E6CF;
+--box-shadow:0 10px 25px rgba(0,0,0,.1);
+--bg-dark:#1b1b1b;
+--text-light:#f4f4f4;
+--card-dark:#2c2c2c;
+--accent-purple:#b983ff;
+--star-color:#ffffff;
+--star-size:1px;
+}
+/* ------------------ 夜間模式 ------------------ */
+body.dark{
+background-color:var(--bg-dark);
+color:var(--text-light);
+}
+body.dark .card{
+background-color:var(--card-dark);
+border-left-color:var(--accent-purple);
+color:var(--text-light);
+}
+body.dark .ig-link{
+background-color:var(--accent-purple);
+}
+body.dark .header h1, body.dark .header p{
+color:var(--text-light);
+}
+/* ------------------ 基礎樣式 ------------------ */
+body{font-family:'Noto Sans TC',sans-serif;margin:0;padding:0;background-color:var(--background-light);color:var(--text-dark);line-height:1.7;transition:.4s;}
+.container{max-width:1050px;margin:40px auto;padding:20px;}
+.header{background-color:var(--main-blue);color:white;padding:40px 20px;text-align:center;border-radius:20px;box-shadow:var(--box-shadow);margin-bottom:40px;position:relative;}
+.header h1{font-family:'Fredoka',sans-serif;font-size:3.2em;margin:0 0 5px 0;text-shadow:2px 2px var(--accent-orange);}
+.header p{font-size:1.1em;opacity:.95;}
+.header i{font-size:2em;margin:0 8px;color:var(--accent-orange);}
+.content-grid{display:grid;grid-template-columns:2fr 1fr;gap:30px;}
+.card{background-color:white;padding:25px;border-radius:15px;box-shadow:var(--box-shadow);border-left:5px solid var(--accent-orange);transition:transform .3s ease, background-color .4s,color .4s;}
+.card:hover{transform:translateY(-5px);}
+.card h3{color:var(--main-blue);border-bottom:2px dashed var(--matcha-green);padding-bottom:8px;margin-top:0;font-family:'Fredoka',sans-serif;font-size:1.5em;}
+.card h3 i{margin-right:8px;color:var(--accent-orange);}
+.badge{display:inline-block;background-color:var(--matcha-green);color:var(--text-dark);padding:6px 12px;border-radius:20px;margin:6px 6px 6px 0;font-size:.9em;font-weight:bold;}
+.badge.active{background-color:var(--accent-orange);color:white;}
+.info-detail{font-weight:bold;color:var(--accent-orange);}
+.ig-card{grid-column:1/-1;text-align:center;border-left-color:var(--matcha-green);}
+.ig-link{display:inline-block;margin-top:15px;padding:10px 20px;background-color:var(--main-blue);color:white;text-decoration:none;border-radius:30px;font-weight:bold;transition:.3s;}
+.ig-link:hover{background-color:var(--accent-orange);}
+#cat-index,#roast-box{margin:10px 0 25px 0;padding:12px 20px;border-radius:15px;font-weight:bold;box-shadow:var(--box-shadow);}
+#cat-index{background-color:var(--matcha-green);}
+#roast-box{background-color:var(--accent-orange);color:white;}
+#weird-quote{text-align:center;margin-top:40px;opacity:0;transition:opacity 1s;}
+/* ------------------ 貓咪提醒泡泡 ------------------ */
+#dark-hint{position:fixed;bottom:25px;right:25px;background:rgba(255,255,255,.95);padding:12px 18px 12px 55px;border-radius:20px;box-shadow:var(--box-shadow);font-weight:bold;font-size:.9em;border-left:4px solid var(--accent-orange);cursor:pointer;z-index:1000;display:flex;align-items:center;gap:10px;animation:wiggle 1.4s infinite ease-in-out;}
+#dark-hint:hover{transform:scale(1.06);}
+#cat-icon{width:36px;height:36px;position:absolute;left:10px;bottom:8px;}
+@keyframes wiggle{0%{transform:translateX(0);}25%{transform:translateX(-3px);}50%{transform:translateX(2px);}75%{transform:translateX(-1px);}100%{transform:translateX(0);}}
+@keyframes cat-grab{0%{transform:translateY(0) rotate(0deg);opacity:1;}40%{transform:translateY(-20px) rotate(-6deg);}70%{transform:translateY(60px) rotate(10deg);opacity:.7;}100%{transform:translateY(200px) rotate(25deg);opacity:0;}}
+body.dark #dark-hint{background:rgba(40,40,40,.95);color:var(--text-light);border-left-color:var(--accent-purple);}
+#dark-quote{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(30,30,30,.9);padding:12px 20px;border-radius:12px;color:var(--text-light);font-weight:bold;font-size:1em;opacity:0;transition:opacity .6s;z-index:999;pointer-events:none;}
+body.dark #dark-quote{opacity:1;}
+/* ------------------ 星空背景 ------------------ */
+#star-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+/* ------------------ RWD ------------------ */
+@media(max-width:768px){.content-grid{grid-template-columns:1fr;}.header h1{font-size:2.5em;}}
+</style>
 </head>
 <body>
 
-    <!-- 🌙 貓咪提示泡泡 -->
-    <div id="dark-hint" onclick="catGrab()">
-        <img src="https://i.imgur.com/2JYfM0P.png" id="cat-icon">
-        <span>喵～按下 <strong>Shift + N</strong> 可以開啟暗黑模式！</span>
-    </div>
+<canvas id="star-canvas"></canvas>
 
-    <!-- 夜間模式黑化台詞 -->
-    <div id="dark-quote">「暗黑模式已開啟…真相永遠藏在陰影裡。」</div>
+<!-- 貓咪提醒泡泡 -->
+<div id="dark-hint" onclick="catGrab()">
+<img src="https://i.imgur.com/2JYfM0P.png" id="cat-icon">
+<span>喵～按下 <strong>Shift + N</strong> 開啟暗黑模式 ✨</span>
+</div>
+<!-- 夜間黑化台詞 -->
+<div id="dark-quote">「暗黑模式已啟動…角色檔案已黑化」</div>
 
-    <div class="container">
-        
-        <header class="header">
-            <i class="fas fa-cat"></i>
-            <i class="fas fa-basketball-ball"></i>
-            <h1>外星貓咪探險隊：任務啟動！</h1>
-            <p>🛸 代號：TSL-1215 | 身份：東華資管 | MBTI：ENFP  | 狀態：準備挑戰新事物</p>
-        </header>
+<div class="container">
+<header class="header">
+<i class="fas fa-cat"></i>
+<i class="fas fa-basketball-ball"></i>
+<h1>外星貓咪探險隊：任務啟動！</h1>
+<p>🛸 代號：TSL-1215 | 身份：東華資管 | MBTI：ENFP | 狀態：準備挑戰新事物</p>
+</header>
 
-        <div id="cat-index">貓貓指數載入中…</div>
-        <div id="roast-box">吐槽載入中…</div>
+<div id="cat-index">貓貓指數載入中…</div>
+<div id="roast-box">吐槽載入中…</div>
 
-        <div class="content-grid">
-            
-            <main>
-                <div class="card">
-                    <h3><i class="fas fa-user-tag"></i> 隊員檔案</h3>
-                    <p><strong>隊員姓名：</strong> <span class="info-detail">曾筱凌</span></p>
-                    <p><strong>年齡：</strong> 18 歲</p>
-                    <p><strong>基地：</strong> 新北市</p>
-                    <p><strong>專長領域：</strong> 資訊管理、運動競賽</p>
-                    <p><strong>隊員特質：</strong><br>
-                        <span class="info-detail">射手座 ♐️</span>｜嘴毒但行動力超強 ( •̀ ω •́ )✧<br>
-                        不喜歡彎彎繞繞，喜歡直接、有效率。<br>
-                        超會丟餿主意（成功率比想像高 🤭）<br>
-                        喜歡交<span class="info-detail">交心</span>夥伴，ENFP 風格全開✨<br>
-                        愛的演員：<span class="info-detail">迪麗熱巴 ❤️</span>
-                    </p>
-                </div>
+<div class="content-grid">
+<main>
+<div class="card">
+<h3><i class="fas fa-user-tag"></i> 隊員檔案</h3>
+<p><strong>隊員姓名：</strong><span class="info-detail">曾筱凌</span> </p>
+<p><strong>年齡：</strong>18 歲</p>
+<p><strong>基地：</strong>新北市</p>
+<p><strong>專長領域：</strong>資訊管理、運動競賽</p>
+<p><strong>隊員特質：</strong><br>
+<span class="info-detail">射手座 ♐️</span>｜嘴毒但行動力超強 ( •̀ ω •́ )✧<br>
+不喜歡彎彎繞繞，喜歡直接、有效率。<br>
+超會丟餿主意（成功率比想像高 🤭）<br>
+喜歡交<span class="info-detail">交心</span>夥伴，ENFP 風格全開✨<br>
+愛的演員：<span class="info-detail">迪麗熱巴 ❤️</span>
+</p>
+</div>
 
-                <div class="card">
-                    <h3><i class="fas fa-star"></i> 探險技能與偏好</h3>
-                    <p>動靜皆宜，只要好玩就行！٩(◦`꒳´◦)۶</p>
-                    <div style="margin-top: 15px;">
-                        <span class="badge active">🏀 籃球</span>
-                        <span class="badge active">🏸 羽毛球</span>
-                        <span class="badge active">🎮 玩遊戲</span>
-                        <span class="badge">🖥️ 追劇</span>
-                        <span class="badge">🎵 聽音樂</span>
-                        <span class="badge">⛰️ 挑戰新事物</span>
-                        <span class="badge">👻 恐怖片愛好者</span>
-                        <span class="badge active">📚 看小說</span>
-                        <span class="badge active">✈️ 旅行</span>
-                        <span class="badge active">🍨 吃冰</span>
-                        <span class="badge active">🍰 吃甜點</span>
-                        <span class="badge">⚡ 個性直接派</span>
-                        <span class="badge">💡 給餿主意達人</span>
-                        <span class="badge active">❤️ 迪麗熱巴</span>
-                    </div>
-                </div>
-            </main>
+<div class="card">
+<h3><i class="fas fa-star"></i> 探險技能與偏好</h3>
+<p>動靜皆宜，只要好玩就行！٩(◦`꒳´◦)۶</p>
+<div style="margin-top:15px;">
+<span class="badge active">🏀 籃球</span>
+<span class="badge active">🏸 羽毛球</span>
+<span class="badge active">🎮 玩遊戲</span>
+<span class="badge">🖥️ 追劇</span>
+<span class="badge">🎵 聽音樂</span>
+<span class="badge">⛰️ 挑戰新事物</span>
+<span class="badge">👻 恐怖片愛好者</span>
+<span class="badge active">📚 看小說</span>
+<span class="badge active">✈️ 旅行</span>
+<span class="badge active">🍨 吃冰</span>
+<span class="badge active">🍰 吃甜點</span>
+<span class="badge">⚡ 個性直接派</span>
+<span class="badge">💡 給餿主意達人</span>
+<span class="badge active">❤️ 迪麗熱巴</span>
+</div>
+</div>
+</main>
 
-            <aside>
-                <div class="card">
-                    <h3><i class="fas fa-cookie-bite"></i> 秘密補給站</h3>
-                    <p>探險的能量來源 (˶ᵔᵕᵔ˶)</p>
-                    <ul>
-                        <li><span style="color: var(--matcha-green); font-weight: bold;">🍵 抹茶甜點：</span> 絕對第一名。</li>
-                        <li>🍨 吃冰：一年四季都能吃的那種。</li>
-                        <li>🍰 所有甜食：甜就是能量。</li>
-                        <li>📚 看小說：腦內小劇場無限運行。</li>
-                        <li>✈️ 旅行：靈魂升級必備。</li>
-                        <li>🔥 個性補充包：越簡單越喜歡，但越複雜的餿主意越想試。</li>
-                        <li>👽 外星人：精神啟蒙。</li>
-                        <li>🐱 貓咪：靈魂導航函式。</li>
-                        <li>😂 愛看別人被恐怖片嚇到。</li>
-                    </ul>
-                </div>
-            </aside>
-            
-            <div class="card ig-card">
-                <h3><i class="fab fa-instagram"></i> 探險隊 IG 頻道</h3>
-                <p>追蹤 ID：<strong>tsl._.1215</strong></p>
-                <a class="ig-link" href="https://www.instagram.com/tsl._.1215/" target="_blank">
-                    前往 TSL-1215 的外星貓咪探險日誌 🚀
-                </a>
-            </div>
+<aside>
+<div class="card">
+<h3><i class="fas fa-cookie-bite"></i> 秘密補給站</h3>
+<p>探險的能量來源 (˶ᵔᵕᵔ˶)</p>
+<ul>
+<li><span style="color:var(--matcha-green);font-weight:bold;">🍵 抹茶甜點：</span> 絕對第一名。</li>
+<li>🍨 吃冰：一年四季都能吃。</li>
+<li>🍰 所有甜食：甜就是能量。</li>
+<li>📚 看小說：腦內小劇場無限運行。</li>
+<li>✈️ 旅行：靈魂升級必備。</li>
+<li>🔥 個性補充包：越簡單越喜歡，但越複雜的餿主意越想試。</li>
+<li>👽 外星人：精神啟蒙。</li>
+<li>🐱 貓咪：靈魂導航函式。</li>
+<li>😂 愛看別人被恐怖片嚇到。</li>
+</ul>
+</div>
+</aside>
 
-        </div>
+<div class="card ig-card">
+<h3><i class="fab fa-instagram"></i> 探險隊 IG 頻道</h3>
+<p>追蹤 ID：<strong>tsl._.1215</strong></p>
+<a class="ig-link" href="https://www.instagram.com/tsl._.1215/" target="_blank">前往 TSL-1215 的外星貓咪探險日誌 🚀</a>
+</div>
+</div>
 
-        <div id="weird-quote"></div>
-        
-    </div>
+<div id="weird-quote"></div>
+</div>
 
-    <footer style="text-align: center; padding: 30px; margin-top: 40px; color: var(--text-dark); border-top: 1px dashed var(--main-blue);">
-        <p>© 2025 TSL-1215 外星貓咪探險隊日誌。準備迎接挑戰！☆</p>
-    </footer>
+<footer style="text-align:center;padding:30px;margin-top:40px;color:var(--text-dark);border-top:1px dashed var(--main-blue);">
+<p>© 2025 TSL-1215 外星貓咪探險隊日誌。準備迎接挑戰！☆</p>
+</footer>
 
-    <!-- ---------------------------------------------------- -->
-    <!--                     JavaScript 功能                   -->
-    <!-- ---------------------------------------------------- -->
-    <script>
-        /* 貓貓指數 */
-        const catLevels = [
-            "🐱 今日貓貓指數：87% —— 牠今天心情很好。",
-            "😼 今日貓貓指數：14% —— 牠睡不飽在生氣。",
-            "🐾 今日貓貓指數：120% —— 貓咪暴走中！",
-            "😺 今日貓貓指數：64% —— 適合被貓咪摸頭的一天。",
-            "🙀 今日貓貓指數：3% —— 牠在反思人生。"
-        ];
-        document.getElementById("cat-index").innerText =
-            catLevels[Math.floor(Math.random() * catLevels.length)];
-
-        /* 吐槽機 */
-        const roastLines = [
-            "你這 ENFP 的能量比太陽還燙 ✨",
-            "你的餿主意比 GPT 還有創意。",
-            "你今天的可愛度已突破地表限制。",
-            "休息一下？先吃個甜點吧。",
-            "你這麼可愛，外星人都會來載你走。"
-        ];
-        document.getElementById("roast-box").innerText =
-            roastLines[Math.floor(Math.random() * roastLines.length)];
-
-        /* 滾到底出現奇怪名言 */
-        const weirdQuotes = [
-            "「如果人生太難，那就吃甜點。」",
-            "「跌倒不是失敗，停下來才是。」",
-            "「WiFi 不穩才值得恐懼。」",
-            "「宇宙那麼大，你的餿主意最偉大。」"
-        ];
-
-        window.addEventListener("scroll", () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-                const q = document.getElementById("weird-quote");
-                q.innerText = weirdQuotes[Math.floor(Math.random() * weirdQuotes.length)];
-                q.style.opacity = 1;
-            }
-        });
-
-        /* 夜間模式 + 黑化台詞 */
-        document.addEventListener("keydown", (e) => {
-            if (e.shiftKey && e.key.toLowerCase() === "n") {
-                document.body.classList.toggle("dark");
-
-                const dq = document.getElementById("dark-quote");
-                dq.style.opacity = 1;
-
-                setTimeout(() => {
-                    dq.style.opacity = 0;
-                }, 2500);
-            }
-        });
-
-        /* 點擊貓咪泡泡 → 被抓走 */
-        function catGrab() {
-            const hint = document.getElementById("dark-hint");
-            hint.style.animation = "cat-grab 1.2s ease forwards";
-        }
-
-        /* 泡泡 7 秒後變淡 */
-        setTimeout(() => {
-            const hint = document.getElementById("dark-hint");
-            hint.style.opacity = 0.25;
-        }, 7000);
-    </script>
-
+<script>
+/* 貓貓指數 */
+const catLevels=["🐱 今日貓貓指數：87% —— 牠今天心情很好。","😼 今日貓貓指數：14% —— 牠睡不飽在生氣。","🐾 今日貓貓指數：120% —— 貓咪暴走中！","😺 今日貓貓指數：64% —— 適合被貓咪摸頭的一天。","🙀 今日貓貓指數：3% —— 牠在反思人生。"];
+document.getElementById("cat-index").innerText=catLevels[Math.floor(Math.random()*catLevels.length)];
+/* 吐槽機 */
+const roastLines=["你這 ENFP 的能量比太陽還燙 ✨","你的餿主意比 GPT 還有創意。","你今天的可愛度已突破地表限制。","休息一下？先吃個甜點吧。","你這麼可愛，外星人都會來載你走。"];
+document.getElementById("roast-box").innerText=roastLines[Math.floor(Math.random()*roastLines.length)];
+/* 滾到底奇怪名言 */
+const weirdQuotes=["「如果人生太難，那就吃甜點。」","「跌倒不是失敗，停下來才是。」","「WiFi 不穩才值得恐懼。」","「宇宙那麼大，你的餿主意最偉大。」"];
+window.addEventListener("scroll",()=>{if(window.innerHeight+window.scrollY>=document.body.offsetHeight-10){const q=document.getElementById("weird-quote");q.innerText=weirdQuotes[Math.floor(Math.random()*weirdQuotes.length)];q.style.opacity=1;}});
+/* 夜間模式 */
+document.addEventListener("keydown",(e)=>{if(e.shiftKey && e.key.toLowerCase()==="n"){document.body.classList.toggle("dark");const dq=document.getElementById("dark-quote");dq.style.opacity=1;let audio=new Audio('https://www.soundjay.com/button/sounds/button-16.mp3');audio.play();setTimeout(()=>{dq.style.opacity=0;},2500);}});
+/* 點擊泡泡 */
+function catGrab(){const hint=document.getElementById("dark-hint");hint.style.animation="cat-grab 1.2s ease forwards";let audio=new Audio('https://www.soundjay.com/button/sounds/button-10.mp3');audio.play();}
+/* 泡泡淡化 */
+setTimeout(()=>{const hint=document.getElementById("dark-hint");hint.style.opacity=.25;},7000);
+/* 貓咪跟隨滑鼠 */
+const catIcon=document.getElementById("cat-icon");document.addEventListener("mousemove",e=>{catIcon.style.left=(e.clientX+15)+"px";catIcon.style.top=(e.clientY+15)+"px";});
+/* 星空背景 */
+const canvas=document.getElementById("star-canvas");const ctx=canvas.getContext("2d");canvas.width=window.innerWidth;canvas.height=window.innerHeight;const stars=[];for(let i=0;i<200;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5+0.5,speed:Math.random()*0.02+0.01});}function drawStars(){ctx.clearRect(0,0,canvas.width,canvas.height);for(const s of stars){ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,2*Math.PI);ctx.fillStyle="white";ctx.fill();s.x+=s.speed;if(s.x>canvas.width)s.x=0;}}setInterval(drawStars,33);window.addEventListener("resize",()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+</script>
 </body>
 </html>
